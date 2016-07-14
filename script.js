@@ -139,7 +139,7 @@ function objectCollision(positions) {
     // if (playerPosition.y === positions[i].y &&
     //     playerPosition.x === positions[i].x) {
      window.location.reload();
-    //  alert('You are dead!');
+     alert('Player 2 won!!');
     }
   }
 }
@@ -153,7 +153,7 @@ function objectCollision2(positions) {
     // if (playerPosition.y === positions[i].y &&
     //     playerPosition.x === positions[i].x) {
      window.location.reload();
-    //  alert('You are dead!');
+     alert('Player 1 won!!');
     }
   }
 }
