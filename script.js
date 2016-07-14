@@ -76,6 +76,9 @@ function renderPoints2(positions) {
     points2 += 5;
     confuzerPosition.x = 1000;
   }
+  if (graviturnerPosition.x === 0){
+    graviturnerPosition.x = 1300;
+  }
   document.getElementById("points").innerHTML = points;
 }
 
