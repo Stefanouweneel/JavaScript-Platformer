@@ -18,7 +18,7 @@ function movePlayer() {
 }
 
 function jumpPlayer() {
-  playerPosition.y = playerPosition.y === 0 ? window.location.reload() : playerPosition.y -= 50;
+  playerPosition.y = playerPosition.y === 0 ? window.location.reload() : playerPosition.y -= 10;
 }
 
 function fallSpeed() {
