@@ -191,7 +191,7 @@ function checkKey(e) {
   } else {
     if (e.keyCode == '32') {
       e.preventDefault();
-      jumpPlayer();
+      jumpPlayer(); 
     }
     if (e.keyCode == '83') {
       e.preventDefault();
