@@ -3,6 +3,7 @@ var ctx = canvas.getContext("2d");
 var originalPosition = {};
 var playerPosition = { x: 100, y: 250 };
 var objectPosition = { x: 480, y: 250 };
+var confuzerPosition = { x: 480, y: 250 };
 var floorPosition = { x: 0, y: 300 }
 var speed = 200;
 var numberOfRedraws = 0;
@@ -22,7 +23,7 @@ function renderObject(position, color) {
   ctx.fillRect(position.x, position.y, 20, 2);
 }
 
-function renderConfuzer() {
+function renderConfuzer(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 20, 2);
 
@@ -34,14 +35,6 @@ function movePlayer() {
     y: playerPosition.y
   };
 }
-
-function movingObject() {
-  console.log("movingObject");
-}
-
-setTimeout(function() {
-  movePlayer();
-}, speed);
 
 function jumpPlayer() {
   console.log(playerPosition.y)
@@ -70,8 +63,10 @@ function fallSpeed() {
 }
 
 function redraw() {
+
   numberOfRedraws += 1;
   console.log(numberOfRedraws)
+  confuzer()
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderFloor(floorPosition, "grey");
   renderPlayer(playerPosition, "green");
@@ -85,7 +80,14 @@ function redraw() {
 }
 
 
-// renderConfuzer(objectPosition, "pink");
+function confuzer() {
+  if (numberOfRedraws === 40) {
+    renderConfuzer(confuzerPosition, "black");
+    console.log("confuzer")
+    numberOfRedraws = 0;
+  }
+}
+
 
 function checkKey(e) {
   e = e || window.event;
