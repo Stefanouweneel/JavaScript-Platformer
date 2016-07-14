@@ -88,8 +88,6 @@ function renderEnemies(positions, color) {
 }
 
 function redraw() {
-  numberOfRedraws += 1;
-  confuzer()
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderFloor(floorPosition, "#dab9a2");
   renderPlayer(playerPosition, "#4d5565");
@@ -97,7 +95,9 @@ function redraw() {
     for (i = 0; i < enemyPositions.length; i++) {
       enemyPositions[i].x -= enemyPositions[i].speed;
     }
-      objectPosition.x -= 4;
+    objectPosition.x -= 4;
+  renderConfuzer(confuzerPosition, "#db2b39");
+  confuzerPosition.x -=4;
   setTimeout(function() {
     renderPoints(enemyPositions);
     objectCollision(enemyPositions);
@@ -106,19 +106,18 @@ function redraw() {
   }, 30);
 }
 
-function confuzer() {
-  if (numberOfRedraws === 40) {
-    renderConfuzer(confuzerPosition, "black");
-    console.log("confuzer")
-    numberOfRedraws = 0;
-  }
-}
-
 function checkKey(e) {
   e = e || window.event;
-  if (e.keyCode == '38') {
+  if (confuzerPosition.x > 0 && confuzerPosition.x < 500) {
+    if (e.keyCode == '38') {
+      e.preventDefault();
+      jumpPlayer();
+    }
+  } else {
+  if (e.keyCode == '32') {
     e.preventDefault();
     jumpPlayer();
+    }
   }
 }
 
