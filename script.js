@@ -2,16 +2,19 @@ var canvas = document.getElementById("board");
 var ctx = canvas.getContext("2d");
 var originalPosition = {};
 var playerPosition = { x: 100, y: 300, width: 20, height: 20};
+var player2Position = { x: 70, y: 300, width: 20, height: 20};
 var objectPosition = { x: 480, y: 250, width: 40, height: 20};
 var floorPosition = { x: 0, y: 400 };
 var ceilingPosition = { x: 0, y: 0 };
-var enemyPositions = [{ x: 480, y: 380, width: 40, height: 20, speed: 3},{ x: 480, y: 370, width: 20, height: 20, speed: 5},{ x: 480, y: 370, width: 20, height: 20, speed: 10}];
+var enemyPositions = [];
 var confuzerPosition = { x: 800, y: 250 };
 var graviturnerPosition = { x: 2000, y: 200};
 var speed = 200;
 var numberOfRedraws = 0;
 var points = 0;
+var points2 = 0;
 var gravity = 5
+
 function renderFloor(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 500, 250);
@@ -23,6 +26,11 @@ function renderCeiling(position, color) {
 }
 
 function renderPlayer(position, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(position.x, position.y, 20, 20);
+}
+
+function renderPlayer2(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 20, 20);
 }
@@ -57,10 +65,31 @@ function renderPoints(positions) {
   document.getElementById("points").innerHTML = points;
 }
 
+function renderPoints2(positions) {
+  for (i=0; i < positions.length; i++){
+    if (positions[i].x === 0) {
+      points2 += 1;
+      console.log(points2);
+    }
+  }
+  if (confuzerPosition.x === 0) {
+    points2 += 5;
+    confuzerPosition.x = 1000;
+  }
+  document.getElementById("points").innerHTML = points;
+}
+
 function movePlayer() {
   originalPosition = {
     x: playerPosition.x,
     y: playerPosition.y
+  };
+}
+
+function movePlayer2() {
+  originalPosition = {
+    x: player2Position.x,
+    y: player2Position.y
   };
 }
 
@@ -83,12 +112,44 @@ function jumpPlayer() {
 
 }
 
+function jumpPlayer2() {
+  console.log(playerPosition.y)
+  if (graviturnerPosition.x > 0 && graviturnerPosition.x < 500) {
+    player2Position.y = player2Position.y + 30;
+  } else {
+    player2Position.y = player2Position.y - 30;
+  }
+
+
+    if (player2Position.y < 100){
+     player2Position.y = 100;
+    }
+    if (player2Position.y > 380){
+      player2Position.y = 380;
+    }
+
+
+}
 function objectCollision(positions) {
   for (i=0; i < positions.length; i++){
     if (playerPosition.x < positions[i].x + positions[i].width &&
        playerPosition.x + playerPosition.width > positions[i].x &&
        playerPosition.y < positions[i].y + positions[i].height &&
        playerPosition.height + playerPosition.y > positions[i].y) {
+    // if (playerPosition.y === positions[i].y &&
+    //     playerPosition.x === positions[i].x) {
+     window.location.reload();
+    //  alert('You are dead!');
+    }
+  }
+}
+
+function objectCollision2(positions) {
+  for (i=0; i < positions.length; i++){
+    if (player2Position.x < positions[i].x + positions[i].width &&
+       player2Position.x + player2Position.width > positions[i].x &&
+       player2Position.y < positions[i].y + positions[i].height &&
+       player2Position.height + player2Position.y > positions[i].y) {
     // if (playerPosition.y === positions[i].y &&
     //     playerPosition.x === positions[i].x) {
      window.location.reload();
@@ -104,6 +165,16 @@ function fallSpeed() {
     }
     if (playerPosition.y < 100){
       playerPosition.y = 100;
+    }
+}
+
+function fallSpeed2() {
+  player2Position.y = player2Position.y + gravity;
+    if (player2Position.y > 380) {
+      player2Position.y = 380;
+    }
+    if (player2Position.y < 100){
+      player2Position.y = 100;
     }
 }
 
@@ -138,6 +209,7 @@ function redraw() {
   renderFloor(floorPosition, "#dab9a2");
   renderCeiling(ceilingPosition, "#dab9a2");
   renderPlayer(playerPosition, "#4d5565");
+  renderPlayer2(player2Position, "#4d5565");
   renderEnemies(enemyPositions, "#81c1bf");
   mommaShip();
     for (i = 0; i < enemyPositions.length; i++) {
@@ -151,28 +223,42 @@ function redraw() {
   graviTurn();
   setTimeout(function() {
     renderPoints(enemyPositions);
+    renderPoints2(enemyPositions);
     objectCollision(enemyPositions);
+    objectCollision2(enemyPositions);
     redraw();
     fallSpeed();
+    fallSpeed2();
   }, 30);
 }
 
 function checkKey(e) {
   e = e || window.event;
+  // if player 1
+  console.log(e.keyCode)
   if (confuzerPosition.x > 0 && confuzerPosition.x < 500) {
     if (e.keyCode == '38') {
       e.preventDefault();
       jumpPlayer();
     }
+    if (e.keyCode == '87') {
+      e.preventDefault();
+      jumpPlayer2();
+    }
   } else {
-  if (e.keyCode == '32') {
-    e.preventDefault();
-    jumpPlayer();
+    if (e.keyCode == '32') {
+      e.preventDefault();
+      jumpPlayer();
+    }
+    if (e.keyCode == '83') {
+      e.preventDefault();
+      jumpPlayer2();
     }
   }
 }
 
-document.onkeydown = checkKey;
+document.onkeyup = checkKey;
 
 movePlayer();
+movePlayer2();
 redraw();
