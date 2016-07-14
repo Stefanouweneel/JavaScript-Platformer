@@ -5,7 +5,7 @@ var originalPosition = {};
 var playerPosition = { x: 250, y: 250 };
 var speed = 200;
 
-function renderBlock(position, color, gravity) {
+function renderBlock(position, color) {
   context.fillStyle = color;
   context.fillRect(position.x, position.y, 10, 10);
 }
