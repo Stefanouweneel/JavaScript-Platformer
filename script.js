@@ -11,7 +11,7 @@ var graviturnerPosition = { x: 2000, y: 200};
 var speed = 200;
 var numberOfRedraws = 0;
 var points = 0;
-
+var gravity = 5
 function renderFloor(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 500, 250);
@@ -66,11 +66,18 @@ function movePlayer() {
 
 function jumpPlayer() {
   console.log(playerPosition.y)
+  if (graviturnerPosition.x > 0 && graviturnerPosition.x < 500) {
+    playerPosition.y = playerPosition.y + 30;
+  } else {
+    playerPosition.y = playerPosition.y - 30;
+  }
 
-    playerPosition.y = playerPosition.y - 100;
 
     if (playerPosition.y < 100){
      playerPosition.y = 100;
+    }
+    if (playerPosition.y > 380){
+      playerPosition.y = 380;
     }
 
 
@@ -91,7 +98,7 @@ function objectCollision(positions) {
 }
 
 function fallSpeed() {
-  playerPosition.y = playerPosition.y + 5;
+  playerPosition.y = playerPosition.y + gravity;
     if (playerPosition.y > 380) {
       playerPosition.y = 380;
     }
@@ -118,6 +125,14 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+ function graviTurn(){
+   if (graviturnerPosition.x > 0 && graviturnerPosition.x < 500) {
+     gravity = -2
+   } else {
+     gravity = 2
+   }
+ }
+
 function redraw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderFloor(floorPosition, "#dab9a2");
@@ -132,7 +147,8 @@ function redraw() {
   renderConfuzer(confuzerPosition, "#db2b39");
   confuzerPosition.x -= 4;
   renderGraviturner(graviturnerPosition, "black");
-  graviturnerPosition.x -= 4;
+  graviturnerPosition.x -= 2;
+  graviTurn();
   setTimeout(function() {
     renderPoints(enemyPositions);
     objectCollision(enemyPositions);
