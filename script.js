@@ -3,11 +3,17 @@ var ctx = canvas.getContext("2d");
 var originalPosition = {};
 var playerPosition = { x: 200, y: 200 };
 var objectPosition = { x: 480, y: 180 };
+var floorPosition = { x: 0, y: 300 }
 var speed = 200;
 
 function renderPlayer(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 20, 20);
+}
+
+function renderFloor(position, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(position.x, position.y, 500, 200);
 }
 
 function renderObject(position, color) {
@@ -46,6 +52,7 @@ function fallSpeed() {
 
 function redraw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  renderFloor(floorPosition, "grey");
   renderPlayer(playerPosition, "green");
   renderObject(objectPosition,"red");
   objectPosition.x -= 4;
