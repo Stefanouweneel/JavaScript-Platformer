@@ -91,11 +91,23 @@ function renderEnemies(positions, color) {
   }
 }
 
+function mommaShip(){
+  if (getRandomInt(0,15) === 5){
+    var x = {x: 500, y: getRandomInt(0, 280), speed: getRandomInt(1,10), width: 20, height: 20};
+    enemyPositions.push(x);
+  }
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function redraw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderFloor(floorPosition, "#dab9a2");
   renderPlayer(playerPosition, "#4d5565");
   renderEnemies(enemyPositions, "#81c1bf");
+  mommaShip();
     for (i = 0; i < enemyPositions.length; i++) {
       enemyPositions[i].x -= enemyPositions[i].speed;
     }
