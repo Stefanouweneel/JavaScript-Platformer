@@ -4,7 +4,7 @@ var originalPosition = {};
 var playerPosition = { x: 100, y: 250 };
 var objectPosition = { x: 480, y: 250 };
 
-var confuzerPosition = { x: 480, y: 250 };
+var confuzerPosition = { x: 1000, y: 250 };
 var floorPosition = { x: 0, y: 300 }
 var speed = 200;
 
@@ -74,15 +74,16 @@ function fallSpeed() {
 }
 
 function redraw() {
-
-  numberOfRedraws += 1;
-  // console.log(numberOfRedraws)
-  confuzer()
+  // numberOfRedraws += 1;
+  // // console.log(numberOfRedraws)
+  // confuzer()
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderFloor(floorPosition, "#dab9a2");
   renderPlayer(playerPosition, "#4d5565");
   renderObject(objectPosition,"#81c1bf");
+  renderConfuzer(confuzerPosition, "#db2b39");
   objectPosition.x -= 4;
+  confuzerPosition.x -=4;
   setTimeout(function() {
     renderPoints();
     objectCollision();
@@ -91,13 +92,13 @@ function redraw() {
   }, 30);
 }
 
-function confuzer() {
-  if (numberOfRedraws === 40) {
-    renderConfuzer(confuzerPosition, "black");
-    console.log("confuzer")
-    numberOfRedraws = 0;
-  }
-}
+// function confuzer() {
+//   if (numberOfRedraws > 40 && numberOfRedraws < 60) {
+//     renderConfuzer(confuzerPosition, "black");
+//     console.log("confuzer")
+//     numberOfRedraws = 0;
+//   }
+// }
 
 function checkKey(e) {
   e = e || window.event;
