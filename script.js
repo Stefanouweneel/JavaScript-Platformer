@@ -37,6 +37,13 @@ function jumpPlayer() {
   playerPosition.y = playerPosition.y === 0 ? window.location.reload() : playerPosition.y -= 10;
 }
 
+function fallSpeed() {
+  playerPosition.y = playerPosition.y + 3;
+    if (playerPosition.y > 250) {
+      playerPosition.y = 250;
+    }
+}
+
 function redraw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderPlayer(playerPosition, "green");
@@ -44,6 +51,7 @@ function redraw() {
   objectPosition.x -= 4;
   setTimeout(function() {
     redraw();
+    fallSpeed();
   }, 30);
 }
 
