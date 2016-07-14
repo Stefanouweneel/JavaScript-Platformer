@@ -5,7 +5,7 @@ var originalPosition = {};
 var playerPosition = { x: 250, y: 250 };
 var speed = 200;
 
-function renderBlock(position, color) {
+function renderBlock(position, color, gravity) {
   context.fillStyle = color;
   context.fillRect(position.x, position.y, 10, 10);
 }
@@ -18,7 +18,14 @@ function movePlayer() {
 }
 
 function jumpPlayer() {
-  playerPosition.y = playerPosition.y === 0 ? window.location.reload() : playerPosition.y -= 10;
+  playerPosition.y = playerPosition.y === 0 ? window.location.reload() : playerPosition.y -= 50;
+}
+
+function fallSpeed() {
+  playerPosition.y = playerPosition.y + 3;
+    if (playerPosition.y > 250) {
+      playerPosition.y = 250;
+    }
 }
 
 function redraw() {
@@ -26,6 +33,7 @@ function redraw() {
   renderBlock(playerPosition, "green");
   setTimeout(function() {
     redraw();
+    fallSpeed();
   }, 30);
 }
 
