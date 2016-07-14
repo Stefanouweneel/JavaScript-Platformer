@@ -30,11 +30,13 @@ function renderConfuzer(position, color) {
   ctx.fillRect(position.x, position.y, 40, 20);
 }
 
-function renderPoints() {
-  if (objectPosition.x === 0) {
-    points += 1;
-    console.log(points);
-    document.getElementById("points").innerHTML = points;
+function renderPoints(positions) {
+  for (i=0; i < positions.length; i++){
+    if (positions[i].x === 0) {
+      points += 1;
+      console.log(points);
+      document.getElementById("points").innerHTML = points;
+    }
   }
 }
 
@@ -86,19 +88,18 @@ function renderEnemies(positions, color) {
 }
 
 function redraw() {
-
   numberOfRedraws += 1;
-  // console.log(numberOfRedraws)
   confuzer()
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderFloor(floorPosition, "#dab9a2");
   renderPlayer(playerPosition, "#4d5565");
-  renderObject(objectPosition,"#81c1bf");
+  renderEnemies(enemyPositions, "#81c1bf");
     for (i = 0; i < enemyPositions.length; i++) {
       enemyPositions[i].x -= enemyPositions[i].speed;
     }
+      objectPosition.x -= 4;
   setTimeout(function() {
-    renderPoints();
+    renderPoints(enemyPositions);
     objectCollision(enemyPositions);
     redraw();
     fallSpeed();
