@@ -35,9 +35,12 @@ function renderPoints(positions) {
     if (positions[i].x === 0) {
       points += 1;
       console.log(points);
-      document.getElementById("points").innerHTML = points;
     }
   }
+  if (confuzerPosition.x === 0) {
+    points += 5;
+  }
+  document.getElementById("points").innerHTML = points;
 }
 
 function movePlayer() {
