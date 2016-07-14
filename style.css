@@ -11,9 +11,13 @@ nav {
 
 .float-left {
 	float: left;
+	margin-left: 30px;
+	text-align: left;
 }
 .float-right {
 	float: right;
+	margin-right: 40px;
+	text-align: right;
 }
 
 .confuser {
