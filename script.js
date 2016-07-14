@@ -53,14 +53,13 @@ function movePlayer() {
 
 function jumpPlayer() {
   console.log(playerPosition.y)
-  if (playerPosition.y === 280) {
-    playerPosition.y = playerPosition.y - 150;
-  }
-  else {
+
+    playerPosition.y = playerPosition.y - 100;
+
     if (playerPosition.y < 0){
      window.location.reload();
     }
-  }
+
 }
 
 function objectCollision(positions) {
@@ -92,8 +91,8 @@ function renderEnemies(positions, color) {
 }
 
 function mommaShip(){
-  if (getRandomInt(0,15) === 5){
-    var x = {x: 500, y: getRandomInt(150, 280), speed: getRandomInt(1,10), width: 20, height: 20};
+  if (getRandomInt(0,30) === 5){
+    var x = {x: 500, y: getRandomInt(0, 280), speed: getRandomInt(1,10), width: 20, height: 20};
     enemyPositions.push(x);
   }
 }
