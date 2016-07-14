@@ -69,9 +69,10 @@ function jumpPlayer() {
 
     playerPosition.y = playerPosition.y - 100;
 
-    if (playerPosition.y < 0){
-     window.location.reload();
+    if (playerPosition.y < 100){
+     playerPosition.y = 100;
     }
+
 
 }
 
@@ -93,6 +94,9 @@ function fallSpeed() {
   playerPosition.y = playerPosition.y + 5;
     if (playerPosition.y > 380) {
       playerPosition.y = 380;
+    }
+    if (playerPosition.y < 100){
+      playerPosition.y = 100;
     }
 }
 
