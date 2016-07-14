@@ -16,6 +16,13 @@ nav {
 	float: right;
 }
 
+.confuser {
+	color: #db2b39;
+}
+.smaller-text {
+	font-size: 15px;
+}
+
 h1 {
 	font-size: 35px;
 	margin-top: 10px;
@@ -34,7 +41,7 @@ body {
 }
 
 canvas {
-	border: 1px solid #999;
+	border: 2px solid #999;
 	margin: 10px auto;
 	display: block;
 	background-color: white;
