@@ -11,9 +11,25 @@ nav {
 
 .float-left {
 	float: left;
+	margin-left: 30px;
+	text-align: left;
+}
+.float-left h3 {
+	color: #4d5565;
+}
+.float-left p {
+	color: #4d5565;
+}
+.float-right h3 {
+	color: #f3a712;
+}
+.float-right p {
+	color: #f3a712;
 }
 .float-right {
 	float: right;
+	margin-right: 40px;
+	text-align: right;
 }
 
 .confuser {

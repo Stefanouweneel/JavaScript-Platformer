@@ -1,8 +1,8 @@
 var canvas = document.getElementById("board");
 var ctx = canvas.getContext("2d");
 var originalPosition = {};
-var playerPosition = { x: 100, y: 300, width: 20, height: 20};
-var player2Position = { x: 70, y: 300, width: 20, height: 20};
+var playerPosition = { x: 70, y: 300, width: 20, height: 20};
+var player2Position = { x: 100, y: 300, width: 20, height: 20};
 var objectPosition = { x: 480, y: 250, width: 40, height: 20};
 var floorPosition = { x: 0, y: 400 };
 var ceilingPosition = { x: 0, y: 0 };
@@ -139,7 +139,7 @@ function objectCollision(positions) {
     // if (playerPosition.y === positions[i].y &&
     //     playerPosition.x === positions[i].x) {
      window.location.reload();
-    //  alert('You are dead!');
+     alert('Player 2 won!!');
     }
   }
 }
@@ -153,7 +153,7 @@ function objectCollision2(positions) {
     // if (playerPosition.y === positions[i].y &&
     //     playerPosition.x === positions[i].x) {
      window.location.reload();
-    //  alert('You are dead!');
+     alert('Player 1 won!!');
     }
   }
 }
@@ -209,7 +209,7 @@ function redraw() {
   renderFloor(floorPosition, "#dab9a2");
   renderCeiling(ceilingPosition, "#dab9a2");
   renderPlayer(playerPosition, "#4d5565");
-  renderPlayer2(player2Position, "#4d5565");
+  renderPlayer2(player2Position, "#f3a712");
   renderEnemies(enemyPositions, "#81c1bf");
   mommaShip();
     for (i = 0; i < enemyPositions.length; i++) {
