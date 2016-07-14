@@ -5,7 +5,7 @@ var playerPosition = { x: 100, y: 300, width: 20, height: 20};
 var objectPosition = { x: 480, y: 250, width: 40, height: 20};
 var floorPosition = { x: 0, y: 300 };
 var enemyPositions = [{ x: 480, y: 250, width: 40, height: 20, speed: 3},{ x: 480, y: 270, width: 20, height: 20, speed: 5},{ x: 480, y: 180, width: 20, height: 20, speed: 10}];
-var confuzerPosition = { x: 480, y: 250 };
+var confuzerPosition = { x: 700, y: 250 };
 var speed = 200;
 var numberOfRedraws = 0;
 var points = 0;
@@ -39,6 +39,7 @@ function renderPoints(positions) {
   }
   if (confuzerPosition.x === 0) {
     points += 5;
+    confuzerPosition.x = 1000;
   }
   document.getElementById("points").innerHTML = points;
 }
