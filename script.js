@@ -1,8 +1,8 @@
 var canvas = document.getElementById("board");
 var ctx = canvas.getContext("2d");
 var originalPosition = {};
-var playerPosition = { x: 200, y: 200 };
-var objectPosition = { x: 480, y: 180 };
+var playerPosition = { x: 100, y: 250 };
+var objectPosition = { x: 480, y: 250 };
 var speed = 200;
 
 function renderPlayer(position, color) {
@@ -12,7 +12,7 @@ function renderPlayer(position, color) {
 
 function renderObject(position, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(position.x, position.y, 20, 40);
+  ctx.fillRect(position.x, position.y, 20, 2);
   setTimeout(function() {
     renderObject(objectPosition,"red");
   }, 1000);
@@ -34,7 +34,22 @@ setTimeout(function() {
 }, speed);
 
 function jumpPlayer() {
-  playerPosition.y = playerPosition.y === 0 ? window.location.reload() : playerPosition.y -= 10;
+  console.log(playerPosition.y)
+  if (playerPosition.y === 250) {
+    playerPosition.y = playerPosition.y - 100;
+  }
+  else {
+    if (playerPosition.y < 0){
+     window.location.reload();
+    }
+  }
+}
+
+function objectCollision() {
+  if (playerPosition.y === objectPosition.y &&
+      playerPosition.x === objectPosition.x) {
+   window.location.reload();
+  }
 }
 
 function fallSpeed() {
@@ -50,6 +65,7 @@ function redraw() {
   renderObject(objectPosition,"red");
   objectPosition.x -= 4;
   setTimeout(function() {
+    objectCollision();
     redraw();
     fallSpeed();
   }, 30);
