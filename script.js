@@ -79,9 +79,9 @@ function redraw() {
   // console.log(numberOfRedraws)
   confuzer()
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  renderFloor(floorPosition, "grey");
-  renderPlayer(playerPosition, "green");
-  renderObject(objectPosition,"red");
+  renderFloor(floorPosition, "#dab9a2");
+  renderPlayer(playerPosition, "#4d5565");
+  renderObject(objectPosition,"#81c1bf");
   objectPosition.x -= 4;
   setTimeout(function() {
     renderPoints();
