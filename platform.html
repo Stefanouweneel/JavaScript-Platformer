@@ -3,19 +3,25 @@
   <head>
     <meta charset="utf-8" value="√">
     <title>Platformer</title>
+    <link href="https://fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
     <link href="style.css" type="text/css" rel="stylesheet"/>
   </head>
 
   <body>
 
     <nav>
-      <h1>Platformer</h1>
+      <div class="float-left">
+        <h1>Platformer</h1>
+      </div>
+      <div class="float-right">
+        <h2> Points: <span id="points"> </span></h2>
+      </div>
     </nav>
 
+    <h3>Jump!</h3>
 
     <canvas id="board" width="500px" height="500px">
     </canvas>
-
 
   <script src="script.js">
   </script>

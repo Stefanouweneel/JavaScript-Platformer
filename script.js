@@ -5,20 +5,27 @@ var playerPosition = { x: 100, y: 300, width: 20, height: 20};
 var objectPosition = { x: 480, y: 250, width: 40, height: 20};
 var floorPosition = { x: 0, y: 300 };
 var enemyPositions = [{ x: 480, y: 250, width: 40, height: 20, speed: 3},{ x: 480, y: 270, width: 20, height: 20, speed: 5},{ x: 480, y: 180, width: 20, height: 20, speed: 10}];
+var confuzerPosition = { x: 480, y: 250 };
 var speed = 200;
+var numberOfRedraws = 0;
 var points = 0;
-
-function renderPlayer(position, color) {
-  ctx.fillStyle = color;
-  ctx.fillRect(position.x, position.y, 20, 20);
-}
 
 function renderFloor(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 500, 250);
 }
 
+function renderPlayer(position, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(position.x, position.y, 20, 20);
+}
+
 function renderObject(position, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(position.x, position.y, 40, 20);
+}
+
+function renderConfuzer(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 40, 20);
 }
@@ -27,6 +34,7 @@ function renderPoints() {
   if (objectPosition.x === 0) {
     points += 1;
     console.log(points);
+    document.getElementById("points").innerHTML = points;
   }
 }
 
@@ -78,10 +86,14 @@ function renderEnemies(positions, color) {
 }
 
 function redraw() {
+
+  numberOfRedraws += 1;
+  // console.log(numberOfRedraws)
+  confuzer()
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  renderFloor(floorPosition, "grey");
-  renderPlayer(playerPosition, "green");
-  renderEnemies(enemyPositions, "red");
+  renderFloor(floorPosition, "#dab9a2");
+  renderPlayer(playerPosition, "#4d5565");
+  renderObject(objectPosition,"#81c1bf");
     for (i = 0; i < enemyPositions.length; i++) {
       enemyPositions[i].x -= enemyPositions[i].speed;
     }
@@ -91,6 +103,14 @@ function redraw() {
     redraw();
     fallSpeed();
   }, 30);
+}
+
+function confuzer() {
+  if (numberOfRedraws === 40) {
+    renderConfuzer(confuzerPosition, "black");
+    console.log("confuzer")
+    numberOfRedraws = 0;
+  }
 }
 
 function checkKey(e) {
