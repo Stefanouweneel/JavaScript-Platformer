@@ -11,7 +11,7 @@ nav {
 
 .float-left {
 	float: left;
-	margin-left: 30px;
+	margin-left: 90px;
 	text-align: left;
 }
 .float-left h3 {
@@ -28,7 +28,7 @@ nav {
 }
 .float-right {
 	float: right;
-	margin-right: 40px;
+	margin-right: 120px;
 	text-align: right;
 }
 

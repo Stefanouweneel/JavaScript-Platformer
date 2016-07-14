@@ -76,6 +76,9 @@ function renderPoints2(positions) {
     points2 += 5;
     confuzerPosition.x = 1000;
   }
+  if (graviturnerPosition.x === 0){
+    graviturnerPosition.x = 1300;
+  }
   document.getElementById("points").innerHTML = points;
 }
 
@@ -237,20 +240,20 @@ function checkKey(e) {
   // if player 1
   console.log(e.keyCode)
   if (confuzerPosition.x > 0 && confuzerPosition.x < 500) {
+    if (e.keyCode == '40') {
+      e.preventDefault();
+      jumpPlayer();
+    }
+    if (e.keyCode == '83') {
+      e.preventDefault();
+      jumpPlayer2();
+    }
+  } else {
     if (e.keyCode == '38') {
       e.preventDefault();
       jumpPlayer();
     }
     if (e.keyCode == '87') {
-      e.preventDefault();
-      jumpPlayer2();
-    }
-  } else {
-    if (e.keyCode == '32') {
-      e.preventDefault();
-      jumpPlayer();
-    }
-    if (e.keyCode == '83') {
       e.preventDefault();
       jumpPlayer2();
     }
