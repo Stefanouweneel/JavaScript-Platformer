@@ -3,25 +3,18 @@ var ctx = canvas.getContext("2d");
 var originalPosition = {};
 var playerPosition = { x: 100, y: 250 };
 var objectPosition = { x: 480, y: 250 };
-<<<<<<< HEAD
-var confuzerPosition = { x: 480, y: 250 };
-||||||| merged common ancestors
 
-=======
->>>>>>> 9a35964f5829ed6a4e06d7f577b70094a80010dd
+var confuzerPosition = { x: 480, y: 250 };
 var floorPosition = { x: 0, y: 300 }
 var speed = 200;
-<<<<<<< HEAD
+
 var numberOfRedraws = 0;
+var points = 0;
 
 function renderFloor(position, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(position.x, position.y, 500, 200);
+  ctx.fillRect(position.x, position.y, 500, 250);
 }
-||||||| merged common ancestors
-=======
-var points = 0;
->>>>>>> 9a35964f5829ed6a4e06d7f577b70094a80010dd
 
 function renderPlayer(position, color) {
   ctx.fillStyle = color;
@@ -30,37 +23,19 @@ function renderPlayer(position, color) {
 
 function renderObject(position, color) {
   ctx.fillStyle = color;
-<<<<<<< HEAD
-  ctx.fillRect(position.x, position.y, 20, 2);
-||||||| merged common ancestors
-  ctx.fillRect(position.x, position.y, 500, 200);
-=======
-  ctx.fillRect(position.x, position.y, 500, 250);
->>>>>>> 9a35964f5829ed6a4e06d7f577b70094a80010dd
+  ctx.fillRect(position.x, position.y, 40, 20);
 }
 
 function renderConfuzer(position, color) {
   ctx.fillStyle = color;
-<<<<<<< HEAD
-  ctx.fillRect(position.x, position.y, 20, 2);
-
-||||||| merged common ancestors
-  ctx.fillRect(position.x, position.y, 20, 2);
-  setTimeout(function() {
-    renderObject(objectPosition,"red");
-  }, 1000);
-=======
   ctx.fillRect(position.x, position.y, 40, 20);
-  setTimeout(function() {
-    renderObject(objectPosition,"red");
-  }, 1000);
->>>>>>> 9a35964f5829ed6a4e06d7f577b70094a80010dd
 }
 
 function renderPoints() {
   if (objectPosition.x === 0) {
     points += 1;
     console.log(points);
+    document.getElementById("points").innerHTML = points;
   }
 }
 
@@ -101,7 +76,7 @@ function fallSpeed() {
 function redraw() {
 
   numberOfRedraws += 1;
-  console.log(numberOfRedraws)
+  // console.log(numberOfRedraws)
   confuzer()
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   renderFloor(floorPosition, "grey");
@@ -116,7 +91,6 @@ function redraw() {
   }, 30);
 }
 
-
 function confuzer() {
   if (numberOfRedraws === 40) {
     renderConfuzer(confuzerPosition, "black");
@@ -124,7 +98,6 @@ function confuzer() {
     numberOfRedraws = 0;
   }
 }
-
 
 function checkKey(e) {
   e = e || window.event;
