@@ -15,6 +15,8 @@ var points = 0;
 var points2 = 0;
 var gravity = 5
 
+// document.getElementById("start-button").onclick =
+
 function renderFloor(position, color) {
   ctx.fillStyle = color;
   ctx.fillRect(position.x, position.y, 500, 250);
@@ -75,6 +77,9 @@ function renderPoints2(positions) {
   if (confuzerPosition.x === 0) {
     points2 += 5;
     confuzerPosition.x = 1000;
+  }
+  if (graviturnerPosition.x === 0){
+    graviturnerPosition.x = 1300;
   }
   document.getElementById("points").innerHTML = points;
 }
@@ -203,6 +208,7 @@ function getRandomInt(min, max) {
      gravity = 2
    }
  }
+
 
 function redraw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);

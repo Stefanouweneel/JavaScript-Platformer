@@ -11,7 +11,8 @@ nav {
 
 .float-left {
 	float: left;
-	margin-left: 30px;
+	margin-left: 90px;
+	display: inline-block;
 	text-align: left;
 }
 .float-left h3 {
@@ -19,6 +20,16 @@ nav {
 }
 .float-left p {
 	color: #4d5565;
+}
+.start-button {
+	width: 100px;
+	height: 40px;
+	display: inline-block;
+	text-align: : left;
+	font-size: 1.5em;
+	border: 2px solid #db2b39;
+	margin: 12px auto 0;
+	padding-top: 5px
 }
 .float-right h3 {
 	color: #f3a712;
@@ -28,7 +39,8 @@ nav {
 }
 .float-right {
 	float: right;
-	margin-right: 40px;
+	margin-right: 120px;
+	display: inline-block;
 	text-align: right;
 }
 
