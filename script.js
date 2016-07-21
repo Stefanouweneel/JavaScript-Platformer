@@ -1,3 +1,7 @@
+
+
+
+
 var canvas = document.getElementById("board");
 var ctx = canvas.getContext("2d");
 var originalPosition = {};
@@ -265,6 +269,8 @@ function checkKey(e) {
 
 document.onkeyup = checkKey;
 
-movePlayer();
-movePlayer2();
-redraw();
+document.getElementById("start-button").onclick = function () {
+  movePlayer();
+  movePlayer2();
+  redraw();
+}
