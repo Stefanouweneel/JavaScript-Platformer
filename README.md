@@ -4,7 +4,7 @@ A platform game made with a team of 3 in 1 day with vanilla JavaScript.
 
 # Play it
 
-To play the game either download the project or check it out live here: http://submariner-karl-46025.bitballoon.com/
+To play the game either download the project or check it out live here: https://consultant-fakes-78478.bitballoon.com/
 
 # Instructions
 
